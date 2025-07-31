@@ -243,10 +243,14 @@ from .utils import build_portfolio_context
 
 
 # Initialise correctement le client
-client = openai.OpenAI(api_key=settings.OPENAI_API_KEY)
+
+# client = openai.OpenAI()
 # views pour assistant chatbot portfolio
 @csrf_exempt
 def chat_view(request):
+    
+    client = openai.OpenAI(api_key=settings.OPENAI_API_KEY)
+    
     if request.method != 'POST':
         return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
 
