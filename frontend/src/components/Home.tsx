@@ -19,7 +19,6 @@ import imgHTML from "../assets/techno/html.png";
 // import imgNODE from "../assets/techno/node-js.png";
 import imgTYPE from "../assets/techno/typescript.svg";
 import imgTAILWIND from "../assets/techno/tailwind.png";
-// import imgPRISMA from "../assets/techno/prisma.webp";
 import imgStreamlit from "../assets/techno/streamlit-48.png";
 import imgPython from "../assets/techno/python.jpg";
 import imgDocker from "../assets/techno/docker.png";
@@ -106,7 +105,8 @@ function Home() {
             <Link to="https://github.com/cisse17">
               <LucideGithub />
             </Link>
-            <Link to="https://www.linkedin.com/in/bassirou-mback%C3%A9-ciss%C3%A9-683529263/">
+
+            <Link to="https://www.linkedin.com/in/bassirou-mbacké-cissé-683529263/">
               <Linkedin />
             </Link>
           </div>

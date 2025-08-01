@@ -3,10 +3,10 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  // base: "/", //en local
+  //  base: "/", //en local
   // base: process.env.NODE_ENV === "production" ? "/static/" : "/",
-  
-  base: '/static/', //  Pour que Django trouve les fichiers en prod
+
+  base: "/static/", //  Pour que Django trouve les fichiers en prod
   build: {
     outDir: "frontend_build",
   },
