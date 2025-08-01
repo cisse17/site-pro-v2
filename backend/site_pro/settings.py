@@ -49,8 +49,8 @@ INSTALLED_APPS = [
     'api',
     "corsheaders",
     'rest_framework',
-    'cloudinary',
-    'cloudinary_storage',
+    # 'cloudinary',
+    # 'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -113,6 +113,9 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'https://bmc.pythonanywhere.com',
 
+    "http://127.0.0.1:3000",
+
+    
 ]
 
 # pour gerer la pagination
@@ -158,13 +161,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
-
-STATIC_URL = '/static/'
 
 
 # STATICFILES_DIRS = [BASE_DIR / "frontend_build"]  # le build Vite
@@ -172,8 +175,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend_build')]
 # if not DEBUG:
 #     STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend_build')]
 
-
-STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
 
@@ -187,7 +188,7 @@ TEMPLATES[0]["DIRS"] = [BASE_DIR / "frontend_build"]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 

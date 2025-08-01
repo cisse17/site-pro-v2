@@ -2,6 +2,26 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
+
+
+
+// const baseURL =
+//   import.meta.env.MODE === "production"
+//     ? "https://bmc.pythonanywhere.com"
+//     : "http://127.0.0.1:8000";
+
+// const getMediaUrl = (path: string) => `${baseURL}${path}`;
+
+const getMediaUrl = (path: string) => {
+  const baseURL =
+    import.meta.env.MODE === "production"
+      ? "https://bmc.pythonanywhere.com"
+      : "http://127.0.0.1:8000";
+  return `${baseURL}${path}`;
+};
+
+
+
 interface Article {
   id: number;
   auteur: string;
@@ -25,11 +45,11 @@ const BlogDetail = () => {
   useEffect(() => {
     axios
       // .get(`http://127.0.0.1:8000/api/blog/${slug}`)
-      .get(`http://localhost:8000/api/blog/slug/${slug}/`)
+      // .get(`http://localhost:8000/api/blog/slug/${slug}/`)
+      .get(getMediaUrl(`/api/blog/${slug}/`))
       .then((res) => setArticle(res.data))
       .catch((err) => {
         console.error("Erreur lors du chargement de l'article :", err);
-        // console.log("Détail de l'erreur :", err.response?.data); // test
         setError("Article introuvable ou une erreur est survenue.");
       });
   }, [slug]);
@@ -72,7 +92,8 @@ const BlogDetail = () => {
         {article.image && (
           <img
             // src={`http://127.0.0.1:8000${article.image}`} pour cloudinary
-            src={article.image}
+            // src={article.image}
+            src={getMediaUrl(article.image)}
             alt={article.titre}
             className="w-full rounded-xl mb-8 object-cover h-80"
           />
@@ -83,7 +104,8 @@ const BlogDetail = () => {
             controls
             className="w-full h-150 object-cover mb-8 rounded-lg shadow-md"
             // src={`http://127.0.0.1:8000${article.video}`}
-            src={article.video}
+            // src={article.video}
+            src={getMediaUrl(article.video)}
           >
             Votre navigateur ne prend pas en charge la lecture de vidéos.
           </video>

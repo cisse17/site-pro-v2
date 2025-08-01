@@ -27,7 +27,7 @@ class ProjetViewSet(viewsets.ViewSet):
     queryset = Projet.objects.all()
     serializer_class = ProjetSerializers
 
-    def list(self, resquest):
+    def list(self, request):
         queryset = Projet.objects.all()
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
@@ -250,7 +250,7 @@ from .utils import build_portfolio_context
 def chat_view(request):
     
     client = openai.OpenAI(api_key=settings.OPENAI_API_KEY)
-    
+
     if request.method != 'POST':
         return JsonResponse({'error': 'Méthode non autorisée'}, status=405)
 

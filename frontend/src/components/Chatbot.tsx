@@ -4,6 +4,14 @@ import ReactMarkdown from "react-markdown";
 // import remarkGfm from "remark-gfm";
 import { MessageCircle } from "lucide-react";
 
+const getMediaUrl = (path: string) => {
+  const baseURL =
+    import.meta.env.MODE === "production"
+      ? "https://bmc.pythonanywhere.com"
+      : "http://127.0.0.1:8000";
+  return `${baseURL}${path}`;
+};
+
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -24,9 +32,9 @@ export default function Chatbot() {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:8000/api/chat/", {
+      const res = await axios.post(getMediaUrl("/api/chat/"), {
+        // const res = await axios.post("http://localhost:8000/api/chat/", {
         messages: newMessages,
-        
       });
       setMessages([...newMessages, res.data.reply]);
     } catch (err) {
@@ -62,15 +70,14 @@ export default function Chatbot() {
           <div className="bg-[#1727D7] text-white p-3 flex justify-between items-center rounded-t-xl">
             <span className="font-medium text-sm">
               {" "}
-              🤖 Assistant Portfolio{" "}
+              🤖 Assistant Portfolio Bassirou {" "}
             </span>
             <button
               onClick={() => setOpen(false)}
-              className="text-white w-3 text-lg font-bold hover:text-blue transition-colors" 
+              className="text-white w-3 text-lg font-bold hover:text-blue transition-colors"
               aria-label="Fermer le chat"
             >
-              X   
-              {/* ✖  */}
+              X{/* ✖  */}
             </button>
           </div>
 
@@ -119,9 +126,6 @@ export default function Chatbot() {
     </div>
   );
 }
-
-
-
 
 // import { useState } from "react";
 // import axios from "axios";

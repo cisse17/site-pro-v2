@@ -4,6 +4,14 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import TitrePage from "../TitrePage";
 
+const getMediaUrl = (path: string) => {
+  const baseURL =
+    import.meta.env.MODE === "production"
+      ? "https://bmc.pythonanywhere.com"
+      : "http://127.0.0.1:8000";
+  return `${baseURL}${path}`;
+};
+
 interface Article {
   id: number;
   auteur: string;
@@ -24,9 +32,12 @@ const Blog = () => {
   const [error, setError] = useState<string | null>(null);
   const [visibleRecentCount, setVisibleRecentCount] = useState<number>(4);
   const [likes, setLikes] = useState<{ [key: number]: number }>({});
-  const [likedArticles, setLikedArticles] = useState<{ [key: number]: boolean }>({});
-  const [likeMessages, setLikeMessages] = useState<{ [key: number]: boolean }>({});
-
+  const [likedArticles, setLikedArticles] = useState<{
+    [key: number]: boolean;
+  }>({});
+  const [likeMessages, setLikeMessages] = useState<{ [key: number]: boolean }>(
+    {}
+  );
 
   const loadLikedFromStorage = () => {
     const stored = localStorage.getItem("liked_articles");
@@ -44,10 +55,14 @@ const Blog = () => {
     if (categorie) params.categorie = categorie;
     if (search) params.search = search;
 
+    // axios
+    //   .get("http://127.0.0.1:8000/api/blog/", { params })
     axios
-      .get("http://127.0.0.1:8000/api/blog/", { params })
+      .get(getMediaUrl("/api/blog/"), { params })
       .then((res) => {
         setArticles(res.data);
+        console.log("API response:", res.data);
+
         setLikes(() => {
           const initialLikes: { [key: number]: number } = {};
           res.data.forEach((article: Article) => {
@@ -71,7 +86,8 @@ const Blog = () => {
   const handleLike = async (id: number) => {
     if (likedArticles[id]) return;
     try {
-      const res = await axios.post(`http://127.0.0.1:8000/api/blog/${id}/like/`);
+      // const res = await axios.post(`http://127.0.0.1:8000/api/blog/${id}/like/`);
+      const res = await axios.post(getMediaUrl(`/api/blog/${id}/like/`));
       setLikes((prev) => ({
         ...prev,
         [id]: res.data.likes,
@@ -85,7 +101,6 @@ const Blog = () => {
       console.error("Erreur lors du like :", err);
     }
   };
-  
 
   const renderLikeButton = (articleId: number) => (
     <div className="flex items-center gap-3 mt-2">
@@ -99,23 +114,36 @@ const Blog = () => {
       >
         ❤️
       </button>
-      <span className="text-sm text-gray-500">{likes[articleId] || 0} j’aime</span>
+      <span className="text-sm text-gray-500">
+        {likes[articleId] || 0} j’aime
+      </span>
       {likeMessages[articleId] && (
-        <span className="text-green-600 text-xs animate-fade-in-out ml-2">Merci pour le like !</span>
+        <span className="text-green-600 text-xs animate-fade-in-out ml-2">
+          Merci pour le like !
+        </span>
       )}
     </div>
   );
-  
 
   return (
     <section className="bg-gradient-to-br from-white via-blue-50 to-blue-100  py-16 px-6 min-h-screen">
       <div className="max-w-6xl mx-auto px-6">
-       
-        <TitrePage titre="Espace dédié à l'innovation technologique, mes expérimentations, succès et échecs." size="md" />
+        <TitrePage
+          titre="Espace dédié à l'innovation technologique, mes expérimentations, succès et échecs."
+          size="md"
+        />
 
         <div className="mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div className="flex flex-wrap gap-2">
-            {["Toutes", "Tech", "Dev", "life", "Actu", "Design", "Formation"].map((cat) => (
+            {[
+              "Toutes",
+              "Tech",
+              "Dev",
+              "life",
+              "Actu",
+              "Design",
+              "Formation",
+            ].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setCategorie(cat === "Toutes" ? "" : cat)}
@@ -157,7 +185,10 @@ const Blog = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
           <div className="space-y-6">
             {[...articles]
-              .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+              .sort(
+                (a, b) =>
+                  new Date(a.date).getTime() - new Date(b.date).getTime()
+              )
               .map((article) => (
                 <motion.div
                   key={article.id}
@@ -168,21 +199,29 @@ const Blog = () => {
                 >
                   {article.video ? (
                     <video
-                      src={`http://127.0.0.1:8000${article.video}`}
+                      // src={`http://127.0.0.1:8000${article.video}`}
+                      // src={getMediaUrl(article.video)}
+                      src={getMediaUrl(article.video)}
                       controls
                       className="w-full sm:w-24 h-24 object-cover rounded-md flex-shrink-0"
                     />
                   ) : article.image ? (
                     <img
                       // src={`http://127.0.0.1:8000${article.image}`}
-                      src={article.image} // vue que j'ai stocké l'image dans le storage cloudinary
+                      // src={article.image} // vue que j'ai stocké l'image dans le storage cloudinary
+                      src={getMediaUrl(article.image)}
+                      // src={`${baseURL}${article.image}`}
                       alt={article.titre}
                       className="w-full sm:w-24 h-24 object-cover rounded-md flex-shrink-0"
                     />
                   ) : null}
                   <div className="flex-1">
-                    <h3 className="text-md font-semibold text-[#1727D7] truncate text-wrap">{article.titre}</h3>
-                    <p className="text-sm text-gray-600 mt-1">{article.auteur}</p>
+                    <h3 className="text-md font-semibold text-[#1727D7] truncate text-wrap">
+                      {article.titre}
+                    </h3>
+                    <p className="text-sm text-gray-600 mt-1">
+                      {article.auteur}
+                    </p>
                     <p className="text-xs text-gray-400 italic">
                       Mis à jour{" "}
                       {new Date(article.date).toLocaleDateString("fr-FR", {
@@ -204,10 +243,15 @@ const Blog = () => {
           </div>
 
           <div className="space-y-10 overflow-y-auto max-h-[90vh]">
-            <h2 className="text-2xl font-bold text-[#1727D7] border-b pb-2">Articles les plus récents</h2>
+            <h2 className="text-2xl font-bold text-[#1727D7] border-b pb-2">
+              Articles les plus récents
+            </h2>
 
             {[...articles]
-              .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+              .sort(
+                (a, b) =>
+                  new Date(b.date).getTime() - new Date(a.date).getTime()
+              )
               .slice(0, visibleRecentCount)
               .map((article) => (
                 <motion.div
@@ -220,21 +264,27 @@ const Blog = () => {
                   {article.video ? (
                     <video
                       // src={`http://127.0.0.1:8000${article.video}`}
-                      src={article.video}
+                      // src={article.video}
+                      src={getMediaUrl(article.video)}
                       controls
                       className="w-full h-48 object-cover"
                     />
                   ) : article.image ? (
                     <img
                       // src={`http://127.0.0.1:8000${article.image}`}
-                      src={article.image}
+                      // src={article.image}
+                      src={getMediaUrl(article.image)}
                       alt={article.titre}
                       className="w-full h-48 object-cover"
                     />
                   ) : null}
                   <div className="p-5">
-                    <h3 className="text-xl font-semibold text-[#1727D7] mb-2">{article.titre}</h3>
-                    <p className="text-gray-600 text-sm mb-3 line-clamp-2">{article.content}</p>
+                    <h3 className="text-xl font-semibold text-[#1727D7] mb-2">
+                      {article.titre}
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                      {article.content}
+                    </p>
                     <p className="text-xs text-gray-400 italic mb-1">
                       Par {article.auteur} •{" "}
                       {new Date(article.date).toLocaleDateString("fr-FR", {
