@@ -34,7 +34,7 @@ function App() {
   <Chatbot/>
       <Routes>
       
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         
         <Route path="/projets" element={<Projet />} />
         <Route path='/service' element={<Service/>} />

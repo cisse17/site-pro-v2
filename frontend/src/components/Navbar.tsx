@@ -4,7 +4,7 @@ import { Home, FolderGit2, HandPlatter, Rss, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const navLinks = [
-  { to: "/home", label: "Accueil", icon: Home },
+  { to: "/", label: "Accueil", icon: Home },
   { to: "/projets", label: "Projets", icon: FolderGit2 },
   { to: "/service", label: "Service", icon: HandPlatter },
   { to: "/blog", label: "Blog", icon: Rss },
@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <nav className="bg-white border-b border-none shadow-sm fixed w-full z-50 ">
       <div className="flex items-center justify-between px-4 py-3 max-w-6xl mx-auto">
-        <Link to="/home" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img src={mon_logo} alt="Logo" className="h-10 w-auto object-contain" />
         </Link>
 
