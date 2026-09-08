@@ -18,7 +18,7 @@ export default function Chatbot() {
     {
       role: "assistant",
       content:
-        "Bonjour 👋 Je suis le bot assistant IA de Bassirou Mbacké CISSE ! Posez-moi une question sur son portfolio.",
+        "Bonjour 👋 Je suis le bot assistant IA de Bassirou Mbacké CISSE ! Posez-moi une question sur son site ou sur lui.",
     },
   ]);
   const [input, setInput] = useState("");

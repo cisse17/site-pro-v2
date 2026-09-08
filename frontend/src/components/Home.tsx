@@ -8,8 +8,9 @@ import {
   // Paintbrush,
   Youtube,
   Container,
+  Cpu,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Titre from "./Titre";
 
 import imgKubernetes from "../assets/techno/kubernetes.png";
@@ -46,34 +47,34 @@ const aboutSections = [
   {
     id: 1,
     title: "Cloud Engineer",
-    description: "Je suis un ingénieur en cloud avec une bonne expérience avec le cloud AWS.",
-    icon: <LetterText style={{ color: "1727D7" }} className="scale-150" />,
+    description:
+      "Je conçois et déploie des infrastructures cloud sur AWS en privilégiant la sécurité, la scalabilité et l'automatisation.",
+    icon: <LetterText style={{ color: "#1727D7" }} className="scale-150" />,
   },
 
   {
     id: 2,
     title: "DevOps Engineer",
     description:
-      "Créer ou Libérer le potentiel de votre pipeline DevOps : automatisez, sécurisez et déployez à la vitesse de l'innovation.",
-    icon: <Container style={{ color: "1727D7" }} className="scale-150" />,
+      "J'automatise les processus de développement et de déploiement avec Docker, GitHub Actions, CI/CD et les pratiques DevOps.",
+    icon: <Container style={{ color: "#1727D7" }} className="scale-150" />,
   },
 
   {
     id: 3,
     title: "Développeur Backend",
     description:
-      "Je maîtrise les bases du développement backend (Python/Django) pour créer des APIs robustes.",
-    icon: <CalendarSync style={{ color: "1727D7" }} className="scale-150" />,
+      "Je développe des APIs et des applications backend avec Python et Django, avec une attention particulière portée à la robustesse et à la maintenabilité.",
+    icon: <CalendarSync style={{ color: "#1727D7" }} className="scale-150" />,
   },
 
-  
-  // {
-  //   id: 4,
-  //   title: "Passionné par l'UI/UX",
-  //   description:
-  //     "Créer des interfaces utilisateur attrayantes et fonctionnelles est ma priorité.",
-  //   icon: <Paintbrush style={{ color: "1727D7" }} className="scale-150" />,
-  // },
+  {
+    id: 4,
+    title: "IA & LLM",
+    description:
+      "J'explore et intègre les technologies d'intelligence artificielle et les modèles de langage dans des applications modernes avec Python et LangChain.",
+    icon: <Cpu style={{ color: "#1727D7" }} className="scale-150" />,
+  },
 ];
 
 function Home() {
@@ -89,23 +90,31 @@ function Home() {
             Bassirou Mbacké CISSE
           </h1>
           <h2 className="text-xl text-gray-700 font-semibold">
-             DevOps Engineer · Cloud Engineer · LLM
+             {/* DevOps Engineer · Cloud Engineer · LLM */}
+             DevOps Engineer · Cloud Engineer · Backend Python/Django · IA & LLM
           </h2>
 
           <div className="bg-white rounded-xl shadow-md p-6 text-gray-600">
             <p>
               Ingénieur passionné par la technologie, je conçois et déploie des
-              solutions robustes, intelligentes et scalables. Mon expertise
-              couvre le cloud engineer (AWS), DevOps engineer, le développement, et l'intégration
+              solutions robustes, intelligentes et scalables. Mon expertise couvre
+              le cloud AWS, le DevOps, le développement backend et l'intégration
               de modèles LLM.
+            </p>
+
+            <p className="mt-4 text-sm text-gray-600">
+              🎥 Je partage également mes apprentissages, mes projets et mes
+              expériences techniques sur YouTube afin de documenter mon parcours
+              et de contribuer à la communauté tech.
             </p>
           </div>
 
           <div className="flex justify-center md:justify-start space-x-4 text-[#1727D7] text-2xl mt-4">
-            <Link to="mailto:bassiroucisse1711@gmail.com">
+            {/* <Link to="mailto:bassiroucisse1711@gmail.com">
               <Mail />
-            </Link>
-            <Link to="https://github.com/cisse17">
+            </Link> */}
+
+            {/* <Link to="https://github.com/cisse17">
               <LucideGithub />
             </Link>
 
@@ -114,7 +123,40 @@ function Home() {
             </Link>
             <Link to="https://www.youtube.com/@bassiroutech">
               <Youtube/>
-            </Link>
+            </Link> */}
+
+          <a
+            href="mailto:bassiroucisse1711@gmail.com"
+            aria-label="Email"
+          >
+            <Mail />
+          </a>
+            <a
+                href="https://github.com/cisse17"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <LucideGithub />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/bassirou-mbacké-cissé-683529263/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <Linkedin />
+              </a>
+
+              <a
+                href="https://www.youtube.com/@bassiroutech"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+              >
+                <Youtube />
+              </a>
           </div>
 
           <span className="inline-block mt-6  px-6 py-3 bg-[#1727D7] text-white rounded-xl shadow transition duration-300">

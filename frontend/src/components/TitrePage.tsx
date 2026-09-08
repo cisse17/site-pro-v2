@@ -1,19 +1,3 @@
-// import React from 'react'
-
-// interface  TitrePageProps {
-//     Titre : string
-// }
-// const TitrePage = ({Titre} : TitrePageProps) => {
-//   return (
-//     <div>
-//       <h1> {Titre} </h1>
-//     </div>
-//   )
-// }
-
-// export default TitrePage
-
-
 import { motion } from "framer-motion";
 
 interface TitrePageProps {
