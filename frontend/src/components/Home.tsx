@@ -45,32 +45,35 @@ const skills = [
 const aboutSections = [
   {
     id: 1,
-    title: "Développeur Frontend",
-    description: "Je suis un développeur frontend avec une bonne expérience.",
+    title: "Cloud Engineer",
+    description: "Je suis un ingénieur en cloud avec une bonne expérience avec le cloud AWS.",
     icon: <LetterText style={{ color: "1727D7" }} className="scale-150" />,
   },
+
   {
     id: 2,
+    title: "DevOps Engineer",
+    description:
+      "Créer ou Libérer le potentiel de votre pipeline DevOps : automatisez, sécurisez et déployez à la vitesse de l'innovation.",
+    icon: <Container style={{ color: "1727D7" }} className="scale-150" />,
+  },
+  
+  {
+    id: 3,
     title: "Développeur Backend",
     description:
       "Je maîtrise les bases du développement backend (Python/Django) pour créer des APIs robustes.",
     icon: <CalendarSync style={{ color: "1727D7" }} className="scale-150" />,
   },
 
-  {
-    id: 3,
-    title: "Développeur DevOps",
-    description:
-      "Créer ou Libérer le potentiel de votre pipeline DevOps : automatisez, sécurisez et déployez à la vitesse de l'innovation.",
-    icon: <Container style={{ color: "1727D7" }} className="scale-150" />,
-  },
-  {
-    id: 4,
-    title: "Passionné par l'UI/UX",
-    description:
-      "Créer des interfaces utilisateur attrayantes et fonctionnelles est ma priorité.",
-    icon: <Paintbrush style={{ color: "1727D7" }} className="scale-150" />,
-  },
+  
+  // {
+  //   id: 4,
+  //   title: "Passionné par l'UI/UX",
+  //   description:
+  //     "Créer des interfaces utilisateur attrayantes et fonctionnelles est ma priorité.",
+  //   icon: <Paintbrush style={{ color: "1727D7" }} className="scale-150" />,
+  // },
 ];
 
 function Home() {
