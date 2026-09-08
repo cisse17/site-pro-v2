@@ -5,20 +5,19 @@ import {
   Linkedin,
   LetterText,
   CalendarSync,
-  Paintbrush,
+  // Paintbrush,
+  Youtube,
   Container,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Titre from "./Titre";
 
-import imgCSS from "../assets/techno/css.png";
-import imgJS from "../assets/techno/js.png";
-import imgREACT from "../assets/techno/react.png";
-import imgHTML from "../assets/techno/html.png";
-// import imgNEXT from "../assets/techno/next-js.webp";
-// import imgNODE from "../assets/techno/node-js.png";
+import imgKubernetes from "../assets/techno/kubernetes.png";
+import imgCloudWatch from "../assets/techno/amazon-cloudwatch.png";
+import imgGrafana from "../assets/techno/grafana.png";
+import imgPrometheus from "../assets/techno/prometheus.png";
 import imgTYPE from "../assets/techno/typescript.svg";
-import imgTAILWIND from "../assets/techno/tailwind.png";
+import imgTerraform from "../assets/techno/terraform.png";
 import imgStreamlit from "../assets/techno/streamlit-48.png";
 import imgPython from "../assets/techno/python.jpg";
 import imgDocker from "../assets/techno/docker.png";
@@ -26,18 +25,19 @@ import imgDjango from "../assets/techno/django-48.png";
 import imgAws from "../assets/techno/aws-64.png";
 import imgLangChain from "../assets/techno/langchain-color.png";
 
+
 const skills = [
   { id: 1, name: "Python", image: imgPython },
   { id: 2, name: "Django", image: imgDjango },
-  { id: 3, name: "HTML", image: imgHTML },
-  { id: 4, name: "CSS", image: imgCSS },
-  { id: 5, name: "JavaScript", image: imgJS },
-  { id: 6, name: "React", image: imgREACT },
-  { id: 7, name: "Tailwind CSS", image: imgTAILWIND },
+  { id: 3, name: "Prometheus", image: imgPrometheus },
+  { id: 4, name: "Kubernetes", image: imgKubernetes },
+  { id: 5, name: "Amazon CloudWatch", image: imgCloudWatch },
+  { id: 6, name: "Grafana", image: imgGrafana },
+  { id: 7, name: "Terraform", image: imgTerraform },
   { id: 8, name: "Streamlit", image: imgStreamlit },
   { id: 9, name: "Docker", image: imgDocker },
   { id: 10, name: "TypeScript", image: imgTYPE },
-  { id: 11, name: "Aws", image: imgAws },
+  { id: 11, name: "Aws cloud", image: imgAws },
   { id: 12, name: "LangChain", image: imgLangChain },
 ];
 
@@ -57,7 +57,7 @@ const aboutSections = [
       "Créer ou Libérer le potentiel de votre pipeline DevOps : automatisez, sécurisez et déployez à la vitesse de l'innovation.",
     icon: <Container style={{ color: "1727D7" }} className="scale-150" />,
   },
-  
+
   {
     id: 3,
     title: "Développeur Backend",
@@ -89,14 +89,14 @@ function Home() {
             Bassirou Mbacké CISSE
           </h1>
           <h2 className="text-xl text-gray-700 font-semibold">
-            Développeur Full-Stack · DevOps · LLM
+             DevOps Engineer · Cloud Engineer · LLM
           </h2>
 
           <div className="bg-white rounded-xl shadow-md p-6 text-gray-600">
             <p>
-              Etudiant, passionné par la technologie, je conçois et déploie des
+              Ingénieur passionné par la technologie, je conçois et déploie des
               solutions robustes, intelligentes et scalables. Mon expertise
-              couvre le développement web, les pipelines DevOps et l'intégration
+              couvre le cloud engineer (AWS), DevOps engineer, le développement, et l'intégration
               de modèles LLM.
             </p>
           </div>
@@ -112,11 +112,14 @@ function Home() {
             <Link to="https://www.linkedin.com/in/bassirou-mbacké-cissé-683529263/">
               <Linkedin />
             </Link>
+            <Link to="https://www.youtube.com/@bassiroutech">
+              <Youtube/>
+            </Link>
           </div>
 
           <span className="inline-block mt-6  px-6 py-3 bg-[#1727D7] text-white rounded-xl shadow transition duration-300">
             {/* Me contacter */}
-            Tél : 0758252282
+            Tél : 0760094693
           </span>
         </section>
 
@@ -142,8 +145,7 @@ function Home() {
         <div className="text-center" data-aos="fade-up">
           <Titre titre="À propos de moi" />
           <p className="text-gray-600 mt-4 mb-12 font-serif">
-            Un développeur complet avec une passion pour la technologie, le
-            design et l’innovation.
+            Un ingénieur complet avec une passion pour la technologie et l’innovation.
           </p>
         </div>
 

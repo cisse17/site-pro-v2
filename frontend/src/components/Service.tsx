@@ -6,39 +6,41 @@ import TitrePage from "./TitrePage"
 
 const services = [
   {
-    icon: "💻",
-    title: "Développement Web",
-    description: "Création de sites modernes, performants et responsives avec Python/django, React, Tailwind, etc.",
+    icon: "☁️",
+    title: "Cloud AWS",
+    description:
+      "Conception et déploiement d'infrastructures cloud sur AWS avec une approche sécurisée, scalable et automatisée.",
   },
-
   {
-    // icon: "🧠",
+    icon: "⚙️",
+    title: "DevOps & CI/CD",
+    description:
+      "Mise en place de pipelines CI/CD avec GitHub Actions pour automatiser les tests, les builds et les déploiements.",
+  },
+  {
+    icon: "🏗️",
+    title: "Infrastructure as Code",
+    description:
+      "Automatisation et gestion des infrastructures AWS avec Terraform pour des environnements reproductibles et maintenables.",
+  },
+  {
+    icon: "🐳",
+    title: "Docker & Kubernetes",
+    description:
+      "Conteneurisation des applications et orchestration avec Docker, Kubernetes et Amazon EKS.",
+  },
+  {
+    icon: "📊",
+    title: "Monitoring & Observabilité",
+    description:
+      "Mise en place du monitoring et de l'observabilité avec Prometheus, Grafana et AWS CloudWatch.",
+  },
+  {
     icon: "🤖",
-    title: "Modèle de Langage (LLM)",
-    description: "Intégration d'intelligence artificielle pour la génération de contenu, agents conversationnels, RAG, etc.",
+    title: "IA & LLM",
+    description:
+      "Intégration de modèles de langage, RAG et agents conversationnels dans des applications modernes.",
   },
-  {
-    icon: "🎨",
-    title: "UI/UX Design",
-    description: "Conception d'interfaces centrées utilisateur, ergonomiques et attrayantes.",
-  },
-
-  // {
-  //   icon: "📦",
-  //   title: "DevOps",
-  //   description: "Automatisation des déploiements, gestion des infrastructures et optimisation des pipelines CI/CD.",
-  // },
-  
-  // {
-  //   icon: "📊",
-  //   title: "Data Science",
-  //   description: "Analyse de données, visualisation et création de modèles prédictifs avec Python.",
-  // },
-  // {
-  //   icon: "☁️",
-  //   title: "Cloud Computing",
-  //   description: "Intégration et déploiement d'applications sur AWS, gestion des services cloud.",
-  // },
  
 ];
 
@@ -46,7 +48,8 @@ const pointsFort = [
   "Je suis quelqu'un qui aime l'apprentissage continu",
   "Une communication claire et transparente",
   "Capacité d'apprendre de nouvelles Technologies modernes ",
-  "Notions de bases en DevOps",
+  "DevOps Engineer",
+  "Cloud Engineer",
   "Compétence de résolution de probléme",
   "Curiosité intellectuelle"
 ];

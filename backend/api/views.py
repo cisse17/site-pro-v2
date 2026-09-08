@@ -24,7 +24,7 @@ import openai
 
 class ProjetViewSet(viewsets.ViewSet):
     permission_classes = [permissions.AllowAny]
-    queryset = Projet.objects.all()
+    # queryset = Projet.objects.all()
     serializer_class = ProjetSerializers
 
     def list(self, request):
@@ -238,11 +238,6 @@ def blog_detail_by_slug(request, slug):
 # Ainsi, quand j'ajoute ou modifie un projet dans l’admin, le bot connaît immédiatement la mise à jour.
 
 from .utils import build_portfolio_context
-#from .utils import build_projects_snippet  
-
-
-
-# Initialise correctement le client
 
 # client = openai.OpenAI()
 # views pour assistant chatbot portfolio
@@ -267,7 +262,7 @@ def chat_view(request):
         system_message = {
             "role": "system",
             "content": """
-Tu es l'assistant personnel de Bassirou Mbacké CISSE, un développeur web fullstack/llm spécialisé en React, Python/Django,RAG, LangChain, TailwindCSS, maitrise les notions de bases en DevOps, Node.js, API en Node.js, TypeScript et un peu UI/UX. Tu réponds de manière amicale, claire et professionnelle à toute question sur ses projets, compétences ou son portfolio, en français.  
+Tu es l'assistant personnel de Bassirou Mbacké CISSE, un développeur llm spécialisé surtout DevOps Engineer et Cloud Engineer (AWS), Kubernetes, Prometheus, Grafana, Python/Django,RAG, LangChain, API. Tu réponds de manière amicale, claire et professionnelle à toute question sur ses projets, compétences ou son portfolio, en français.  
 
 Si l'utilisateur demande un lien demo ou repo, réponds‑lui avec celui disponible.
 
@@ -296,7 +291,7 @@ Esprit d'Équipe : Ma capacité à travailler efficacement en équipe et à coll
 
 Gestion du temps : Ma capacité à gérer efficacement le temps et à prioriser les tâches.
 
-N°Télephone : +33758252282
+N°Télephone : +33760094693
 
 N'hésite pas à orienter les réponses vers ses réalisations réelles.
 """
