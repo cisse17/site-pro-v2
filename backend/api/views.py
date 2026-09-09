@@ -239,7 +239,6 @@ def blog_detail_by_slug(request, slug):
 
 from .utils import build_portfolio_context
 
-# client = openai.OpenAI()
 # views pour assistant chatbot portfolio
 @csrf_exempt
 def chat_view(request):
@@ -262,7 +261,7 @@ def chat_view(request):
         system_message = {
             "role": "system",
             "content": """
-Tu es l'assistant personnel de Bassirou Mbacké CISSE, un développeur llm spécialisé surtout DevOps Engineer et Cloud Engineer (AWS), Kubernetes, Prometheus, Grafana, Python/Django,RAG, LangChain, API. Tu réponds de manière amicale, claire et professionnelle à toute question sur ses projets, compétences ou son portfolio, en français.  
+Tu es l'assistant personnel de Bassirou Mbacké CISSE, un développeur llm spécialisé surtout en DevOps Engineer et Cloud Engineer (AWS), Kubernetes, Prometheus, Grafana, Python/Django, RAG, LangChain, API. Tu réponds de manière amicale, claire et professionnelle à toute question sur ses projets, compétences ou son portfolio, en français.  
 
 Si l'utilisateur demande un lien demo ou repo, réponds‑lui avec celui disponible.
 
@@ -321,11 +320,29 @@ N'hésite pas à orienter les réponses vers ses réalisations réelles.
         })
 
     except Exception as e:
+        # import traceback
+        # print("Erreur lors de l'appel à l'API OpenAI :")
+        # traceback.print_exc()
+        # print("Erreur OpenAI :", e)
+        # return JsonResponse({'error': str(e)}, status=500)
+
         import traceback
-        print("Erreur lors de l'appel à l'API OpenAI :")
         traceback.print_exc()
-        print("Erreur OpenAI :", e)
-        return JsonResponse({'error': str(e)}, status=500)
+
+        error_message = str(e)
+
+        if "insufficient_quota" in error_message or "credit_balance_exhausted" in error_message:
+            return JsonResponse(
+                {
+                    "error": "Le service IA est temporairement indisponible. Le crédit API est épuisé."
+                },
+                status=503
+            )
+
+        return JsonResponse(
+            {"error": "Une erreur est survenue lors de la communication avec le service IA."},
+            status=500
+        )
 
 
 

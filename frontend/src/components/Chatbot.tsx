@@ -23,30 +23,78 @@ export default function Chatbot() {
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-
+  
   const sendMessage = async () => {
-    if (!input.trim()) return;
-    const newMessages = [...messages, { role: "user", content: input }];
+    if (!input.trim() || loading) return;
+  
+    const newMessages = [
+      ...messages,
+      { role: "user", content: input.trim() },
+    ];
+  
     setMessages(newMessages);
     setInput("");
     setLoading(true);
-
+  
     try {
       const res = await axios.post(getMediaUrl("/api/chat/"), {
-        // const res = await axios.post("http://localhost:8000/api/chat/", {
         messages: newMessages,
       });
+  
       setMessages([...newMessages, res.data.reply]);
-    } catch (err) {
+    } catch (err: any) {
+      console.error("Erreur chatbot :", err);
+  
+      let errorMessage =
+        "Désolé, une erreur est survenue. Veuillez réessayer.";
+  
+      if (axios.isAxiosError(err)) {
+        if (err.response?.data?.error) {
+          errorMessage = err.response.data.error;
+        } else if (err.response?.status === 503) {
+          errorMessage =
+            "Le service IA est temporairement indisponible. Veuillez réessayer plus tard.";
+        } else if (err.response?.status === 500) {
+          errorMessage =
+            "Le service IA rencontre actuellement un problème. Veuillez réessayer plus tard.";
+        }
+      }
+  
       setMessages([
         ...newMessages,
-        { role: "assistant", content: "Désolé, une erreur est survenue." },
+        {
+          role: "assistant",
+          content: errorMessage,
+        },
       ]);
-      console.log(err);
     } finally {
       setLoading(false);
     }
   };
+
+  // const sendMessage = async () => {
+  //   if (!input.trim()) return;
+  //   const newMessages = [...messages, { role: "user", content: input }];
+  //   setMessages(newMessages);
+  //   setInput("");
+  //   setLoading(true);
+
+  //   try {
+  //     const res = await axios.post(getMediaUrl("/api/chat/"), {
+  //       // const res = await axios.post("http://localhost:8000/api/chat/", {
+  //       messages: newMessages,
+  //     });
+  //     setMessages([...newMessages, res.data.reply]);
+  //   } catch (err) {
+  //     setMessages([
+  //       ...newMessages,
+  //       { role: "assistant", content: "Désolé, une erreur est survenue." },
+  //     ]);
+  //     console.log(err);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
